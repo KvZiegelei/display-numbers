@@ -1,6 +1,7 @@
 function displayPosition (pos: number) {
-    basic.clearScreen()
-    plotPixel(Math.floor(pos), 255)
+    weight = Math.floor(255 * (pos - Math.floor(pos)))
+    plotPixel(Math.floor(pos), 255 - weight)
+    plotPixel(1 + Math.floor(pos), weight)
 }
 input.onButtonPressed(Button.A, function () {
     start = input.runningTime()
@@ -17,10 +18,11 @@ function plotPixel (pos: number, weight: number) {
     }
 }
 let time = 0
+let weight = 0
 let start = 0
 start = input.runningTime()
 basic.forever(function () {
     time = input.runningTime() - start
     displayPosition((time + 7500) / 3750 % 16)
-    basic.pause(3000)
+    basic.pause(1)
 })
