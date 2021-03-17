@@ -1,10 +1,10 @@
 {
-    "name": "grumpy",
+    "name": "display-numbers",
     "description": "",
     "dependencies": {
         "core": "*",
         "microphone": "*",
-        "radio": "*"
+        "bluetooth": "*"
     },
     "files": [
         "main.blocks",
