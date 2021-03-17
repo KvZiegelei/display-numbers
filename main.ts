@@ -1,9 +1,14 @@
 function displayPosition (pos: number) {
-    weight = Math.floor(255 * (pos - Math.floor(pos)))
+    if (Math.floor(pos) != floorpos) {
+        plotPixel(floorpos, 0)
+        floorpos = Math.floor(pos)
+    }
+    weight = Math.floor(256 * (pos - floorpos))
     plotPixel(Math.floor(pos), 255 - weight)
     plotPixel(1 + Math.floor(pos), weight)
 }
 input.onButtonPressed(Button.A, function () {
+    basic.clearScreen()
     start = input.runningTime()
 })
 function plotPixel (pos: number, weight: number) {
@@ -19,6 +24,7 @@ function plotPixel (pos: number, weight: number) {
 }
 let time = 0
 let weight = 0
+let floorpos = 0
 let start = 0
 start = input.runningTime()
 basic.forever(function () {
