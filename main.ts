@@ -2,11 +2,11 @@ function runProgram0 () {
     digit = 0
     while (program == 0) {
         basic.showNumber(digit)
+        basic.pause(1000)
         digit += 1
         if (digit > 9) {
             digit = 0
         }
-        basic.pause(1000)
     }
 }
 function displayPosition (pos: number) {
@@ -40,9 +40,10 @@ function plotPixel (pos: number, weight: number) {
 input.onButtonPressed(Button.AB, function () {
     if (program == 0) {
         runProgram0()
-    }
-    if (program == 1) {
+    } else if (program == 1) {
         runProgram1()
+    } else {
+    	
     }
 })
 let time = 0
