@@ -7,10 +7,14 @@ function displayPosition (pos: number) {
     plotPixel(Math.floor(pos), 255 - weight)
     plotPixel(1 + Math.floor(pos), weight)
 }
-input.onButtonPressed(Button.A, function () {
-    basic.clearScreen()
+function runProgram1 () {
     start = input.runningTime()
-})
+    while (program == 1) {
+        time = input.runningTime() - start
+        displayPosition((time + 7500) / 3750 % 16)
+        basic.pause(1)
+    }
+}
 function plotPixel (pos: number, weight: number) {
     if (pos < 4) {
         led.plotBrightness(pos, 0, weight)
@@ -22,13 +26,14 @@ function plotPixel (pos: number, weight: number) {
         led.plotBrightness(0, 16 - pos, weight)
     }
 }
+input.onButtonPressed(Button.AB, function () {
+    if (program == 1) {
+        runProgram1()
+    }
+})
 let time = 0
+let start = 0
 let weight = 0
 let floorpos = 0
-let start = 0
-start = input.runningTime()
-basic.forever(function () {
-    time = input.runningTime() - start
-    displayPosition((time + 7500) / 3750 % 16)
-    basic.pause(1)
-})
+let program = 0
+program = 0
