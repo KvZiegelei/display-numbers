@@ -1,8 +1,8 @@
 function runProgram0 () {
     digit = 0
     while (program == 0) {
-        basic.showNumber(digit)
-        basic.pause(1000)
+        displayDigit(digit)
+        basic.pause(2000)
         digit += 1
         if (digit > 9) {
             digit = 0
@@ -35,6 +35,39 @@ function plotPixel (pos: number, weight: number) {
         led.plotBrightness(12 - pos, 4, weight)
     } else {
         led.plotBrightness(0, 16 - pos, weight)
+    }
+}
+function displayDigit (num: number) {
+    if (num == 0) {
+        led.plotBrightness(1, 0, 0)
+        led.plotBrightness(0, 0, 0)
+    } else if (num == 1) {
+        led.plotBrightness(1, 0, 100)
+        led.plotBrightness(0, 0, 0)
+    } else if (num == 2) {
+        led.plotBrightness(1, 0, 255)
+        led.plotBrightness(0, 0, 0)
+    } else if (num == 3) {
+        led.plotBrightness(1, 0, 0)
+        led.plotBrightness(0, 0, 100)
+    } else if (num == 4) {
+        led.plotBrightness(1, 0, 100)
+        led.plotBrightness(0, 0, 20)
+    } else if (num == 5) {
+        led.plotBrightness(1, 0, 20)
+        led.plotBrightness(0, 0, 100)
+    } else if (num == 6) {
+        led.plotBrightness(1, 0, 255)
+        led.plotBrightness(0, 0, 100)
+    } else if (num == 7) {
+        led.plotBrightness(1, 0, 0)
+        led.plotBrightness(0, 0, 255)
+    } else if (num == 8) {
+        led.plotBrightness(1, 0, 100)
+        led.plotBrightness(0, 0, 255)
+    } else {
+        led.plotBrightness(1, 0, 255)
+        led.plotBrightness(0, 0, 255)
     }
 }
 input.onButtonPressed(Button.AB, function () {
