@@ -89,3 +89,11 @@ let floorpos = 0
 let digit = 0
 let program = 0
 program = 0
+displayDigit(1, 0)
+displayDigit(2, 1)
+displayDigit(3, 2)
+displayDigit(4, 3)
+displayDigit(5, 4)
+displayDigit(6, 5)
+displayDigit(7, 6)
+displayDigit(8, 7)
