@@ -1,3 +1,14 @@
+function runProgram0 () {
+    digit = 0
+    while (program == 0) {
+        basic.showNumber(digit)
+        digit += 1
+        if (digit > 9) {
+            digit = 0
+        }
+        basic.pause(1000)
+    }
+}
 function displayPosition (pos: number) {
     if (Math.floor(pos) != floorpos) {
         plotPixel(floorpos, 0)
@@ -27,6 +38,9 @@ function plotPixel (pos: number, weight: number) {
     }
 }
 input.onButtonPressed(Button.AB, function () {
+    if (program == 0) {
+        runProgram0()
+    }
     if (program == 1) {
         runProgram1()
     }
@@ -35,5 +49,6 @@ let time = 0
 let start = 0
 let weight = 0
 let floorpos = 0
+let digit = 0
 let program = 0
 program = 0
