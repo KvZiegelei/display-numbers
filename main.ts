@@ -89,7 +89,3 @@ let floorpos = 0
 let digit = 0
 let program = 0
 program = 0
-for (let indeks = 0; indeks <= 9; indeks++) {
-    displayDigit(indeks, indeks)
-    basic.pause(1000)
-}
