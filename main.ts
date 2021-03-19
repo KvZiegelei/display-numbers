@@ -1,7 +1,6 @@
 function runProgram0 () {
     digit = 0
     while (program == 0) {
-        displayDigit(digit)
         basic.pause(2000)
         digit += 1
         if (digit > 9) {
@@ -37,37 +36,39 @@ function plotPixel (pos: number, weight: number) {
         led.plotBrightness(0, 16 - pos, weight)
     }
 }
-function displayDigit (num: number) {
+function displayDigit (num: number, pos: number) {
+    y = Math.floor(pos / 2)
+    x = 2 * (pos - 2 * y) + 1
     if (num == 0) {
-        led.plotBrightness(1, 0, 0)
-        led.plotBrightness(0, 0, 0)
+        led.plotBrightness(x + 1, y, 0)
+        led.plotBrightness(x, y, 0)
     } else if (num == 1) {
-        led.plotBrightness(1, 0, 100)
-        led.plotBrightness(0, 0, 0)
+        led.plotBrightness(x + 1, y, 100)
+        led.plotBrightness(x, y, 0)
     } else if (num == 2) {
-        led.plotBrightness(1, 0, 255)
-        led.plotBrightness(0, 0, 0)
+        led.plotBrightness(x + 1, y, 255)
+        led.plotBrightness(x, y, 0)
     } else if (num == 3) {
-        led.plotBrightness(1, 0, 0)
-        led.plotBrightness(0, 0, 100)
+        led.plotBrightness(x + 1, y, 0)
+        led.plotBrightness(x, y, 100)
     } else if (num == 4) {
-        led.plotBrightness(1, 0, 100)
-        led.plotBrightness(0, 0, 20)
+        led.plotBrightness(x + 1, y, 120)
+        led.plotBrightness(x, y, 30)
     } else if (num == 5) {
-        led.plotBrightness(1, 0, 20)
-        led.plotBrightness(0, 0, 100)
+        led.plotBrightness(x + 1, y, 30)
+        led.plotBrightness(x, y, 120)
     } else if (num == 6) {
-        led.plotBrightness(1, 0, 255)
-        led.plotBrightness(0, 0, 100)
+        led.plotBrightness(x + 1, y, 255)
+        led.plotBrightness(x, y, 100)
     } else if (num == 7) {
-        led.plotBrightness(1, 0, 0)
-        led.plotBrightness(0, 0, 255)
+        led.plotBrightness(x + 1, y, 0)
+        led.plotBrightness(x, y, 255)
     } else if (num == 8) {
-        led.plotBrightness(1, 0, 100)
-        led.plotBrightness(0, 0, 255)
+        led.plotBrightness(x + 1, y, 100)
+        led.plotBrightness(x, y, 255)
     } else {
-        led.plotBrightness(1, 0, 255)
-        led.plotBrightness(0, 0, 255)
+        led.plotBrightness(x + 1, y, 255)
+        led.plotBrightness(x, y, 255)
     }
 }
 input.onButtonPressed(Button.AB, function () {
@@ -79,6 +80,8 @@ input.onButtonPressed(Button.AB, function () {
     	
     }
 })
+let x = 0
+let y = 0
 let time = 0
 let start = 0
 let weight = 0
@@ -86,3 +89,7 @@ let floorpos = 0
 let digit = 0
 let program = 0
 program = 0
+for (let indeks = 0; indeks <= 9; indeks++) {
+    displayDigit(indeks, indeks)
+    basic.pause(1000)
+}
