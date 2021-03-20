@@ -1,3 +1,18 @@
+function displayNumber (num: number) {
+    if (Math.abs(num) <= 9999.5) {
+        basic.clearScreen()
+        digits = Math.round(Math.abs(num))
+        divisor0 = 1000
+        for (let position = 0; position <= 3; position++) {
+            displayDigit(Math.floor(digits / divisor0), position)
+            digits = digits % divisor0
+            divisor0 = divisor0 / 10
+        }
+        if (num < 0) {
+            led.plot(2, 2)
+        }
+    }
+}
 function runProgram0 () {
     digit = 0
     while (program == 0) {
@@ -37,13 +52,15 @@ function plotPixel (pos: number, weight: number) {
     }
 }
 function displayDigit (hex2: number, pos: number) {
-    y = Math.floor(pos / 2)
-    x = 1 + 2 * (pos % 2)
+    y = 3 * Math.floor(pos / 2)
+    x = 3 * (pos % 2)
     h = hex2
     divisor = 8
     for (let index = 0; index <= 3; index++) {
         if (Math.floor(h / divisor) == 1) {
             led.plot(x + index % 2, y + Math.floor(index / 2))
+        } else {
+            led.plotBrightness(x + index % 2, y + Math.floor(index / 2), 3)
         }
         h = h % divisor
         divisor = divisor / 2
@@ -103,10 +120,10 @@ let start = 0
 let weight = 0
 let floorpos = 0
 let digit = 0
+let divisor0 = 0
+let digits = 0
 let program = 0
 program = 0
-displayDigit(1, 0)
-displayDigit(2, 1)
-displayDigit(3, 6)
-displayDigit(4, 7)
-basic.pause(500)
+displayNumber(1234)
+basic.pause(5000)
+displayNumber(-8345)
