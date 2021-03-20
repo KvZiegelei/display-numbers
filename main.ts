@@ -36,40 +36,17 @@ function plotPixel (pos: number, weight: number) {
         led.plotBrightness(0, 16 - pos, weight)
     }
 }
-function displayDigit (num: number, pos: number) {
+function displayDigit (hex2: number, pos: number) {
     y = Math.floor(pos / 2)
-    x = 2 * (pos - 2 * y) + 1
-    b = 43
-    if (num == 0) {
-        led.plotBrightness(x + 1, y, 0)
-        led.plotBrightness(x, y, 0)
-    } else if (num == 1) {
-        led.plotBrightness(x + 1, y, b)
-        led.plotBrightness(x, y, 0)
-    } else if (num == 2) {
-        led.plotBrightness(x + 1, y, 255)
-        led.plotBrightness(x, y, 0)
-    } else if (num == 3) {
-        led.plotBrightness(x + 1, y, 0)
-        led.plotBrightness(x, y, b)
-    } else if (num == 4) {
-        led.plotBrightness(x + 1, y, b)
-        led.plotBrightness(x, y, 6)
-    } else if (num == 5) {
-        led.plotBrightness(x + 1, y, 6)
-        led.plotBrightness(x, y, b)
-    } else if (num == 6) {
-        led.plotBrightness(x + 1, y, 255)
-        led.plotBrightness(x, y, b)
-    } else if (num == 7) {
-        led.plotBrightness(x + 1, y, 0)
-        led.plotBrightness(x, y, 255)
-    } else if (num == 8) {
-        led.plotBrightness(x + 1, y, b)
-        led.plotBrightness(x, y, 255)
-    } else {
-        led.plotBrightness(x + 1, y, 255)
-        led.plotBrightness(x, y, 255)
+    x = 1 + 2 * (pos % 2)
+    h = hex2
+    divisor = 8
+    for (let index = 0; index <= 3; index++) {
+        if (Math.floor(h / divisor) == 1) {
+            led.plot(x + index % 2, y + Math.floor(index / 2))
+        }
+        h = h % divisor
+        divisor = divisor / 2
     }
 }
 input.onButtonPressed(Button.AB, function () {
@@ -81,7 +58,44 @@ input.onButtonPressed(Button.AB, function () {
     	
     }
 })
-let b = 0
+function displayDigitE (num: number, pos: number) {
+    y = Math.floor(pos / 2)
+    x = 2 * (pos - 2 * y) + 1
+    divisor = 43
+    if (num == 0) {
+        led.plotBrightness(x + 1, y, 0)
+        led.plotBrightness(x, y, 0)
+    } else if (num == 1) {
+        led.plotBrightness(x + 1, y, divisor)
+        led.plotBrightness(x, y, 0)
+    } else if (num == 2) {
+        led.plotBrightness(x + 1, y, 255)
+        led.plotBrightness(x, y, 0)
+    } else if (num == 3) {
+        led.plotBrightness(x + 1, y, 0)
+        led.plotBrightness(x, y, divisor)
+    } else if (num == 4) {
+        led.plotBrightness(x + 1, y, divisor)
+        led.plotBrightness(x, y, 6)
+    } else if (num == 5) {
+        led.plotBrightness(x + 1, y, 6)
+        led.plotBrightness(x, y, divisor)
+    } else if (num == 6) {
+        led.plotBrightness(x + 1, y, 255)
+        led.plotBrightness(x, y, divisor)
+    } else if (num == 7) {
+        led.plotBrightness(x + 1, y, 0)
+        led.plotBrightness(x, y, 255)
+    } else if (num == 8) {
+        led.plotBrightness(x + 1, y, divisor)
+        led.plotBrightness(x, y, 255)
+    } else {
+        led.plotBrightness(x + 1, y, 255)
+        led.plotBrightness(x, y, 255)
+    }
+}
+let divisor = 0
+let h = 0
 let x = 0
 let y = 0
 let time = 0
@@ -91,13 +105,8 @@ let floorpos = 0
 let digit = 0
 let program = 0
 program = 0
-displayDigit(0, 9)
-displayDigit(1, 8)
-displayDigit(2, 7)
+displayDigit(1, 0)
+displayDigit(2, 1)
 displayDigit(3, 6)
-displayDigit(4, 5)
-displayDigit(5, 4)
-displayDigit(6, 3)
-displayDigit(7, 2)
-displayDigit(8, 1)
-displayDigit(9, 0)
+displayDigit(4, 7)
+basic.pause(500)
