@@ -55,7 +55,7 @@ function showT_v2 (num: number) {
         }
     }
     if (num % 2 == 1) {
-        led.plotBrightness(x, y, 127)
+        led.plotBrightness(x, y, 32)
     }
 }
 function plotPixel (pos: number, weight: number) {
