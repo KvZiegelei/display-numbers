@@ -13,17 +13,7 @@ function displayNumber (num: number) {
         }
     }
 }
-function runProgram0 () {
-    digit = 0
-    while (program == 0) {
-        basic.pause(2000)
-        digit += 1
-        if (digit > 9) {
-            digit = 0
-        }
-    }
-}
-function displayPosition (pos: number) {
+function _ (pos: number) {
     if (Math.floor(pos) != floorpos) {
         plotPixel(floorpos, 0)
         floorpos = Math.floor(pos)
@@ -32,12 +22,14 @@ function displayPosition (pos: number) {
     plotPixel(Math.floor(pos), 255 - weight)
     plotPixel(1 + Math.floor(pos), weight)
 }
-function runProgram1 () {
-    start = input.runningTime()
-    while (program == 1) {
-        time = input.runningTime() - start
-        displayPosition((time + 7500) / 3750 % 16)
-        basic.pause(1)
+function runProgram0 () {
+    digit = 0
+    while (program == 0) {
+        basic.pause(2000)
+        digit += 1
+        if (digit > 9) {
+            digit = 0
+        }
     }
 }
 function plotPixel (pos: number, weight: number) {
@@ -70,11 +62,23 @@ input.onButtonPressed(Button.AB, function () {
     if (program == 0) {
         runProgram0()
     } else if (program == 1) {
-        runProgram1()
+    	
     } else {
     	
     }
 })
+function showT_v1 (num: number) {
+    x = 4
+    y = 4
+    for (let index = 0; index < num; index++) {
+        led.plot(x, y)
+        y += -1
+        if (y == -1) {
+            y = 4
+            x += -1
+        }
+    }
+}
 function displayDigitE (num: number, pos: number) {
     y = Math.floor(pos / 2)
     x = 2 * (pos - 2 * y) + 1
@@ -111,19 +115,26 @@ function displayDigitE (num: number, pos: number) {
         led.plotBrightness(x, y, 255)
     }
 }
+function showT_v0 (num: number) {
+    x = 0
+    y = 0
+    for (let index = 0; index < num; index++) {
+        led.plot(x, y)
+        x += 1
+        if (x == 5) {
+            x = 0
+            y += 1
+        }
+    }
+}
 let divisor = 0
 let h = 0
 let x = 0
 let y = 0
-let time = 0
-let start = 0
+let program = 0
+let digit = 0
 let weight = 0
 let floorpos = 0
-let digit = 0
 let divisor0 = 0
 let digits = 0
-let program = 0
-program = 0
-displayNumber(1234)
-basic.pause(5000)
-displayNumber(-8345)
+showT_v1(11)
