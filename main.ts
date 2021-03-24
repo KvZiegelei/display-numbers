@@ -32,6 +32,32 @@ function runProgram0 () {
         }
     }
 }
+input.onButtonPressed(Button.A, function () {
+    h += 1
+    if (h == 51) {
+        h = 0
+    }
+    basic.clearScreen()
+    showT_v2(h)
+})
+function showT_v2 (num: number) {
+    x = 4
+    y = 4
+    if (num == 0) {
+        led.plotBrightness(x, y, 2)
+    }
+    for (let index = 0; index < Math.floor(num / 2); index++) {
+        led.plot(x, y)
+        y += -1
+        if (y == -1) {
+            y = 4
+            x += -1
+        }
+    }
+    if (num % 2 == 1) {
+        led.plotBrightness(x, y, 127)
+    }
+}
 function plotPixel (pos: number, weight: number) {
     if (pos < 4) {
         led.plotBrightness(pos, 0, weight)
@@ -128,13 +154,14 @@ function showT_v0 (num: number) {
     }
 }
 let divisor = 0
-let h = 0
-let x = 0
 let y = 0
+let x = 0
 let program = 0
 let digit = 0
 let weight = 0
 let floorpos = 0
 let divisor0 = 0
 let digits = 0
-showT_v1(11)
+let h = 0
+h = 0
+showT_v2(input.temperature())
